@@ -15,7 +15,7 @@ const modal = () => {
 	blockBody.appendChild(imageModal)
 	imageModal.querySelector('.fancybox-inner').style.height = 'auto'
 
-	const createNormalModalNotLikeIdiotsWhoHaveThisCourse = (image) => {
+	const createModal = (image) => {
 		const some = image.split('images')[1];
 		imageModal.querySelector('#callback').innerHTML = `<img src=images${some} class="img-responsive" />`;
 		imageModal.classList.add('image-modal')
@@ -25,7 +25,7 @@ const modal = () => {
 	documents.forEach(doc => {
 		doc.addEventListener('click', (e) => {
 			e.preventDefault();
-			const clone = createNormalModalNotLikeIdiotsWhoHaveThisCourse(doc.href)
+			const clone = createModal(doc.href)
 			openModal(clone, overlayModal)
 		})
 	})
