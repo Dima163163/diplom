@@ -1,29 +1,42 @@
-const slider = () => {
+const slider = ({ slides, buttonLeft, buttonRight, viewSlidesCount = 3, wrapper }) => {
 
-	const sliderBlock = document.querySelector('.benefits-wrap')
-	const slides = document.querySelectorAll('.benefits__item')
-	const buttonLeft = document.querySelector('.benefits__arrow--left')
-	const buttonRight = document.querySelector('.benefits__arrow--right')
+	let currentIndex = 0;
+	const width = document.documentElement.clientWidth;
 
-	let current = 0;
+	if(width <= 576) {
+		viewSlidesCount = 1;
+		wrapper.style.justifyContent = "center";
+	}
 
-	const slider = () => {
-		for(let i = 0; i < slides.length; i++ ){
-			
+
+	function showSliders() {
+		slides.forEach(slide => {
+			slide.style.display = 'none';
+		})
+
+		for(let i = 0; i < viewSlidesCount; i++) {
+			const slideIndex = (currentIndex + i) % slides.length;
+			slides[slideIndex].style.display = 'block';
 		}
-		slides[current].style = 'opacity: 0'
-	}
-	
-
-	const prevSlide = () => {
-
 	}
 
-	const nextSlide = () => {
-
+	function nextSlide() {
+		currentIndex += viewSlidesCount;
+		showSliders();
 	}
 
+	function prevSlide() {
+			currentIndex -= viewSlidesCount;
+			if (currentIndex < 0) {
+				currentIndex = slides.length - viewSlidesCount;
+			}
+			showSliders()
+	}
 
+	showSliders();
+
+	buttonRight.addEventListener('click', nextSlide);
+	buttonLeft.addEventListener('click', prevSlide);
 }
 
 

@@ -1,6 +1,9 @@
-const sendForm = ({formName, someElem = [] }) => {
-	const forms = document.getElementsByName(formName)
-	const body = document.querySelector('body')
+const sendForm = ({formBlock, someElem = [] }) => {
+	const form = formBlock
+	const statusBlock = document.createElement('div')
+	const loadText = 'Загрузка...'
+	const errorText = 'Ошибка...'
+	const successText = 'Спасибо! Наш менеджер с вами свяжется!'
 
 	const validate = (list) => {
 		let success = true
@@ -33,19 +36,20 @@ const sendForm = ({formName, someElem = [] }) => {
 			}).then(res => res.json)
 	}
 
-
-	forms.forEach(form => {
-		form.addEventListener('submit', (e) => {
-			e.preventDefault()
-
+	const submitForm = () => {
 			const formElements = form.querySelectorAll('input')
 			const formData = new FormData(form)
 			const formBody = {}
+
+
 			formData.forEach((val, key) => {
 				formBody[key] = val
 			})
 
-			if(body.classList.contains("balkony")) {
+			statusBlock.textContent = loadText
+			form.append(statusBlock)
+
+			if(someElem) {
 				someElem.forEach(elem => {
 					const element = document.getElementById(elem.id)
 					console.log(element)
@@ -54,24 +58,38 @@ const sendForm = ({formName, someElem = [] }) => {
 					}
 				})
 			}
-	
-				if(validate(formElements)) {
-					sendData(formBody)
-						.then(data => {
-							formElements.forEach(input => {
-								input.value = ''
-							})
-						}).catch(error => console.log(error))
-				} else {
-					alert(`Данные не валидны!
+
+				
+			if(validate(formElements)) {
+				sendData(formBody)
+					.then(data => {
+						statusBlock.textContent = successText
+						formElements.forEach(input => {
+							input.value = ''
+						})
+					}).catch(error => {
+						statusBlock.textContent = errorText
+					})
+			} else {
+				alert(`Данные не валидны!
 Имя в формате: Иван или Ivan
 Телефон в формате: +XXXXXXXXXXX`)
-				}
+			}
+	}
 
+	try {
+    if (!form) {
+      throw new Error("Верните форму на место!");
+    	}
+    	form.addEventListener("submit", (e) => {
+      	e.preventDefault();
 
-		
-		})
-	})
+      	submitForm();
+    	});
+  } catch (error) {
+    console.log(error.message);
+  }
+
 }
 
 export default sendForm
