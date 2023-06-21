@@ -52,7 +52,6 @@ const sendForm = ({formBlock, someElem = [] }) => {
 			if(someElem) {
 				someElem.forEach(elem => {
 					const element = document.getElementById(elem.id)
-					console.log(element)
 					if(elem.type === 'input'){
 						formBody[elem.id] = element.value
 					}

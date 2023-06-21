@@ -16,7 +16,6 @@ slider({
 	viewSlidesCount: 3,
 	wrapper: document.querySelector('.benefits-wrap')
 })
-console.log()
 slider({
 	slides: document.querySelector('#services').querySelectorAll('.col-md-12'),
 	buttonLeft: document.querySelector('.services__arrow--right'),
