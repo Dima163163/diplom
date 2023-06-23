@@ -1,5 +1,4 @@
 const modal = () => {
-
 	const popupBtn = document.querySelector('.button > .fancyboxModal')
 	const modal = document.querySelector('.header-modal')
 	const overlayModal = document.querySelector('.overlay')
@@ -10,17 +9,16 @@ const modal = () => {
 	const btnSevices = document.querySelectorAll('.service-button')
 	const modalServices = document.querySelector('.services-modal')
 
-	
-	imageModal.querySelector('#callback').innerHTML = '';
-	blockBody.appendChild(imageModal)
-	imageModal.querySelector('.fancybox-inner').style.height = 'auto'
-
 	const createModal = (image) => {
 		const some = image.split('images')[1];
 		imageModal.querySelector('#callback').innerHTML = `<img src=images${some} class="img-responsive" />`;
 		imageModal.classList.add('image-modal')
 		return imageModal;
 	}
+
+	imageModal.querySelector('#callback').innerHTML = '';
+	blockBody.appendChild(imageModal)
+	imageModal.querySelector('.fancybox-inner').style.height = 'auto'
 
 	documents.forEach(doc => {
 		doc.addEventListener('click', (e) => {
@@ -54,13 +52,14 @@ const modal = () => {
 		if(e.target.closest(".overlay") || e.target.closest('.header-modal__close')){
 			closeModal(modal, overlayModal)
 		}
+
 		if(e.target.closest(".overlay") || e.target.closest('.services-modal__close')){
 			closeModal(modalServices, overlayModal)
 		}
+		
 		if(e.target.closest(".overlay") || e.target.closest('.header-modal__close')){
 			closeModal(imageModal, overlayModal)
 		}
 	})
-
 }
 export default modal

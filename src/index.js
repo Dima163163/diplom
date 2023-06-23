@@ -5,8 +5,6 @@ import calculator from "./modules/calculator";
 import sendForm from "./modules/sendForm";
 import scrollAnimation from "./modules/scrollAnimation";
 
-
-
 timer('7 July 2023')
 modal()
 slider({
@@ -38,6 +36,7 @@ if(bodyWindow){
 		formBlock: document.querySelector('.okna').querySelector('#order_2').querySelector('.form-horizontal')
 		})
 }
+
 if(bodyBalconies){
 	sendForm({
 		formBlock: document.querySelector('.balkony').querySelector('#order_1').querySelector('.form-horizontal'),
@@ -60,6 +59,7 @@ if(bodyBalconies){
 		]
 	})
 }
+
 if(bodyKitchen){
 	sendForm({
 		formBlock: document.querySelector('.kuhni').querySelector('#order_1').querySelector('.form-horizontal')

@@ -3,7 +3,6 @@ const timer = (deadline) => {
   const timerHours = document.querySelectorAll('.count_2>span')
   const timerMinutes = document.querySelectorAll('.count_3>span')
   const timerSecondes = document.querySelectorAll('.count_4>span')
-
   const divTime = document.querySelectorAll('.countdown-text')
 
   const getTimeRemaining = () => {
@@ -31,7 +30,6 @@ const timer = (deadline) => {
     timerHours.forEach(timerHour => timerHour.textContent = getTime.hours < 10 ? "0" + getTime.hours : getTime.hours)
     timerMinutes.forEach(timerMinute => timerMinute.textContent = getTime.minutes < 10 ? "0" + getTime.minutes : getTime.minutes)
     timerSecondes.forEach(timerSeconde => timerSeconde.textContent = getTime.secondes < 10 ? "0" + getTime.secondes : getTime.secondes)
-
   }
 
    const timerInterval = () => {
@@ -42,13 +40,13 @@ const timer = (deadline) => {
         updateClock();
       }, 1000);
     }
+
     if (getTime.timeRemaining < 0) {
       divTime.forEach(div => div.innerHTML = "Акция закончилась");
     }
   };
 
   timerInterval()
-
 };
 
 export default timer;

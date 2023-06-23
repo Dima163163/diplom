@@ -5,18 +5,16 @@ const calculator = () => {
 	const calcSquare = document.getElementById('calc-input')
 	const total = document.getElementById('calc-total')
 
-
 	const validate = function () {
 		this.value = this.value.replace(/\D/g, '')
 	}
 
-
 	const countCalc = () => {
-		let totalValue = 0
 		const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
-		let calcTypeMaterialValue = +calcTypeMaterial.options[calcTypeMaterial.selectedIndex].value
 		const calcSquareValue = +calcSquare.value
-
+		let calcTypeMaterialValue = +calcTypeMaterial.options[calcTypeMaterial.selectedIndex].value
+		let totalValue = 0
+		
 		if(calcTypeMaterial.value == '--'){
 			calcTypeMaterialValue = 1
 		}
@@ -40,7 +38,6 @@ const calculator = () => {
 					}
 		})
 	}
-
 }
 
 export default calculator

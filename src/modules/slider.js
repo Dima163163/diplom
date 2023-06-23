@@ -1,14 +1,19 @@
 const slider = ({ slides, buttonLeft, buttonRight, viewSlidesCount = 3, wrapper }) => {
-
 	let currentIndex = 0;
-	const width = document.documentElement.clientWidth;
+	let copyViewSlidesCount = viewSlidesCount
 
-	if(width <= 576) {
-		viewSlidesCount = 1;
-		wrapper.style.justifyContent = "center";
-	}
-
-
+	window.addEventListener('resize', () => {
+		const width = document.documentElement.clientWidth;
+		if(width <= 576) {
+			viewSlidesCount = 1;
+			showSliders()
+			wrapper.style.justifyContent = "center";
+		} else {
+			viewSlidesCount = copyViewSlidesCount;
+			showSliders()
+		}
+	})
+	
 	function showSliders() {
 		slides.forEach(slide => {
 			slide.style.display = 'none';

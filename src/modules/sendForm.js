@@ -6,10 +6,9 @@ const sendForm = ({formBlock, someElem = [] }) => {
 	const successText = 'Спасибо! Наш менеджер с вами свяжется!'
 
 	const validate = (list) => {
-		let success = true
-
 		const namePattern = /[а-яёА-ЯЁa-zA-Z]/i;
     const phonePattern = /\+\d{10,16}/g;
+		let success = true
 
 		list.forEach(input => {
 			if(input.name === 'fio'){
@@ -17,6 +16,7 @@ const sendForm = ({formBlock, someElem = [] }) => {
 					success = false
 				}
 			}
+			
 			if(input.name === 'phone'){
 				if(phonePattern.test(input.value) !== true){
 					success = false
@@ -41,7 +41,6 @@ const sendForm = ({formBlock, someElem = [] }) => {
 			const formData = new FormData(form)
 			const formBody = {}
 
-
 			formData.forEach((val, key) => {
 				formBody[key] = val
 			})
@@ -58,11 +57,13 @@ const sendForm = ({formBlock, someElem = [] }) => {
 				})
 			}
 
-				
 			if(validate(formElements)) {
 				sendData(formBody)
 					.then(data => {
 						statusBlock.textContent = successText
+						setTimeout(() =>{
+							statusBlock.textContent = ''
+						}, 5000)
 						formElements.forEach(input => {
 							input.value = ''
 						})
@@ -88,7 +89,6 @@ const sendForm = ({formBlock, someElem = [] }) => {
   } catch (error) {
     console.log(error.message);
   }
-
 }
 
 export default sendForm

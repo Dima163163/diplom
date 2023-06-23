@@ -3,10 +3,9 @@ const scrollAnimation = () => {
 	const header = document.querySelector('#header')
 	const nav = document.querySelector('#navigation')
 	const offer = document.querySelector('#offer')
-
-	anchor.style.display = 'none'
 	const height = +header.offsetHeight + +nav.offsetHeight + +offer.offsetHeight
 
+	anchor.style.display = 'none'
 	
 	window.addEventListener('scroll', () => {
 		const scroll = document.documentElement.scrollTop
